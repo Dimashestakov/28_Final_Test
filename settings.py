@@ -3,7 +3,7 @@ class Settings:
 
     base_url = 'https://b2c.passport.rt.ru'
     valid_email = 'dimakosmos1991@gmail.ru'       # Ввести валидный email
-    valid_password = 'bgF-5sc-7gg-L9s'   # Ввести валидный пароль
+    valid_password = '@@@@@@'   # Ввести валидный пароль
     valid_email_reg = 'Ввести валидный email'   # Ввести валидный email
     invalid_email = 'in.com'
     invalid_password = 'inid123456'
