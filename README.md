@@ -1,5 +1,5 @@
 # 28_Final_Test
-Проект Тестирования :https://b2c.passport.rt.ru
+Проект Тестирования https://b2c.passport.rt.ru
 
 Запуск через консоль python :  -m pytest -v --driver Chrome --driver-path chromedriver.exe tests/test.py
 
