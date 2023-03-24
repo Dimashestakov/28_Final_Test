@@ -5,7 +5,8 @@ from pages.locators import AuthLocators
 from settings import *
 
 def test_autoriz_valid_email_pass(selenium):
-    """TV-001 Тест авторизации с  правильными (валидными) значениями e-mail и паролем."""
+    """TV-001 Произведен тест авторизации с использованием верных (действительных)
+        значений электронной почты и пароля."""
     page = AuthPage(selenium)
     page.email.send_keys(Settings.valid_email)
     page.email.clear()
@@ -24,9 +25,9 @@ def test_autoriz_valid_email_pass(selenium):
                          ids=['invalid_password', 'empty'])
 
 def test_autoriz_invalid_email_pass(selenium, incor_email, incor_passw):
-    """TV-002,003 "Проверка входа пользователя с невалидным email и паролем:
-    связка Почта+Пароль валидна, но пользователь с такими данными не зарегистрирован в системе;
-    пустые значения."""
+    """TV-002,003 "Проверка входа пользователя в систему с использованием недействительных значений
+     электронной почты и пароля, таких как комбинация Почты+Пароля, которая является валидной,
+     но не соответствует зарегистрированным пользователям в системе, а также с пустыми значениями."""
     page = AuthPage(selenium)
     page.email.send_keys(incor_email)
     page.email.clear()
@@ -38,7 +39,7 @@ def test_autoriz_invalid_email_pass(selenium, incor_email, incor_passw):
 
 
 def test_elements_of_autoriz(selenium):
-    """TV-004 Проверка Формы "Авторизация" на наличие основных элементов."""
+    """TV-004 Проведена проверка формы "Авторизация" на наличие основных элементов."""
     page = AuthPage(selenium)
 
     assert page.menu_tub.text in page.card_of_auth.text
@@ -50,7 +51,7 @@ def test_elements_of_autoriz(selenium):
 
 
 def test_menu_type_autoriz(selenium):
-    """TV-005 Проверка названия табов в меню выбора типа авторизации."""
+    """TV-005 Была произведена проверка названий вкладок в меню выбора типа авторизации."""
     try:
         page = AuthPage(selenium)
         menu = [page.tub_phone.text, page.tub_email.text, page.tub_login.text, page.tub_ls.text]
@@ -64,14 +65,14 @@ def test_menu_type_autoriz(selenium):
 
 
 def test_menu_of_type_active_autoriz(selenium):
-    """TV-006 Проверка выбора таба по умолчанию в Меню выбора типа авторизации."""
+    """TV-006 Была проведена проверка выбора вкладки по умолчанию в меню выбора типа авторизации."""
     page = AuthPage(selenium)
 
     assert page.active_tub_phone.text == Settings.menu_type_auth[0]
 
 
 def test_placeholder_name_swap(selenium):
-    """TV-007 Тест смены полей ввода при смене типа авторизации."""
+    """TV-007 Был проведен тест на изменение полей ввода при изменении типа авторизации."""
     page = AuthPage(selenium)
     page.tub_phone.click()
 
@@ -84,21 +85,21 @@ def test_placeholder_name_swap(selenium):
     assert page.placeholder_name.text in Settings.placeholder_name
 
 def test_forgot_password_link(selenium):
-    """TV-008 Тест перехода к форме "восстановление пароля"."""
+    """TV-008 Был произведен тест перехода на форму "восстановление пароля""."""
     page = AuthPage(selenium)
     page.driver.execute_script("arguments[0].click();", page.forgot_password_link)
 
     assert page.find_other_element(*AuthLocators.password_recovery).text == 'Восстановление пароля'
 
 def test_registration_link(selenium):
-    """TV-009 Тест перехода к форме "Регистрация"."""
+    """TV-009 Был проведен тест перехода на форму "Регистрация""."""
     page = AuthPage(selenium)
     page.register_link.click()
 
     assert page.find_other_element(*AuthLocators.registration).text == 'Регистрация'
 
 def test_page_logo_registration(selenium):
-    """TV-010 Проверка блока с продуктовым слоганом компании на странице "Регистрация"."""
+    """TV-010 Была произведена проверка блока с продуктовым слоганом компании на странице "Регистрация""."""
     try:
         page_reg = RegistrPage(selenium)
         assert page_reg.page_left_registration.text != ''
@@ -107,7 +108,7 @@ def test_page_logo_registration(selenium):
 
 
 def test_elements_registration(selenium):
-    """TV-011 Проверка Формы "Регистрация" на наличие основных элементов."""
+    """TV-011 Была проведена проверка формы "Регистрация" на наличие основных элементов."""
     try:
         page_reg = RegistrPage(selenium)
         card_of_reg = [page_reg.first_name, page_reg.last_name, page_reg.address_registration,
@@ -126,7 +127,7 @@ def test_elements_registration(selenium):
 
 
 def test_names_elements_registration(selenium):
-    """TV-012 Проверка Формы "Регистрация" на соответствие названий элементов блока требованию."""
+    """TV-012 Была проведена проверка формы "Регистрация" на соответствие названий элементов блока требованиям."""
     try:
         page_reg = RegistrPage(selenium)
         assert 'Имя' in page_reg.card_of_registration.text
@@ -141,7 +142,8 @@ def test_names_elements_registration(selenium):
 
 
 def test_registration_valid_data(selenium):
-    """TV-013 Проверка Регистрации пользователя с валидными данными: "Имя" и "Фамилия" написанных кириллицей."""
+    """TV-013 Была произведена проверка регистрации пользователя с использованием действительных данных,
+     включая имя и фамилию, написанные кириллицей."""
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(Settings.first_name)
     page_reg.first_name.clear()
@@ -158,7 +160,7 @@ def test_registration_valid_data(selenium):
     assert page_reg.find_other_element(*AuthLocators.email_confirm).text == 'Подтверждение email'
 
 def test_registration_invalid_data(selenium):
-    """TV-014 Проверка на уникальность введенного e-mail в форме "Регистрация"."""
+    """TV-014 Была проведена проверка на уникальность введенного адреса электронной почты в форме "Регистрация"."""
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(Settings.first_name)
     page_reg.first_name.clear()
@@ -175,8 +177,8 @@ def test_registration_invalid_data(selenium):
     assert "Учётная запись уже существует" in page_reg.find_other_element(*AuthLocators.error_account_exists).text
 
 def test_registration_and_redir_auth(selenium):
-    """TV-015 Тест формы "Авторизация" после нажатия кнопки "Войти" при регистрации пользователя e-mail,
-    который уже был использован ранее для регистрации. """
+    """TV-015 Был проведен тест формы "Авторизация" после нажатия кнопки "Войти" при попытке регистрации
+    пользователя с адресом электронной почты, который уже был использован ранее для регистрации. """
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(Settings.first_name)
     page_reg.first_name.clear()
@@ -207,8 +209,8 @@ def test_registration_and_redir_auth(selenium):
                              'russ_symbols=29', 'russ_symbols=30'
                          ])
 def test_first_name_by_valid_data(selenium, valid_first_name):
-    """TV-016 Тест поля ввода "Имя" формы "Регистрация" допустимыми валидными значениями:
-    буквы кириллицы в количестве 2 ; 3 ; 15 ; 29 ; 30 ."""
+    """TV-016 Был произведен тест поля ввода "Имя" формы "Регистрация" с использованием допустимых валидных значений,
+     включающих буквы кириллицы в различных количествах 2 ; 3 ; 15 ; 29 ; 30 ."""
     page_reg = RegistrPage(selenium)
     page_reg.first_name.send_keys(valid_first_name)
     page_reg.first_name.clear()
@@ -232,8 +234,8 @@ def test_first_name_by_valid_data(selenium, valid_first_name):
                          ])
 
 def test_first_name_invalid_data(selenium, invalid_first_name):
-    """TV-017 Тест поля ввода "Имя" формы "Регистрация" невалидными значениями:
-    пустое значение;
+    """TV-017 Был проведен тест поля ввода "Имя" формы "Регистрация" с
+    использованием недопустимых невалидных значений, включая пустое значение;
     буквы кириллицы в количестве 1 ; 100 ; 256 ;
     латиницы буквы; китайские иероглифы; спецсимволы; числа."""
     page_reg = RegistrPage(selenium)
@@ -249,8 +251,10 @@ def test_first_name_invalid_data(selenium, invalid_first_name):
                          [(Settings.passw1), (Settings.passw2), (Settings.passw3)],
                          ids=['valid_symbols=8', 'valid_symbols=15', 'valid_symbols=20'])
 def test_last_name_valid_data(selenium, valid_password):
-    """TК-018 Тест поля ввода "Пароль" формы "Регистрация" валидными значениями.:
-    символы из букв латиницы прописью и строчные+числа в количестве 8 ; 15 ; 20 ."""
+    """TК-018 Был произведен тест поля ввода "Пароль" формы "Регистрация" с
+    использованием допустимых валидных значений,
+    включая символы из букв латиницы как прописью, так и строчными буквами,
+    а также числа в различных количествах. 8 ; 15 ; 20 ."""
     page_reg = RegistrPage(selenium)
     page_reg.password_registration.send_keys(valid_password)
     page_reg.password_registration.clear()
@@ -265,8 +269,8 @@ def test_last_name_valid_data(selenium, valid_password):
 
 
 def test_registration_confirm_password_valid_data(selenium):
-    """TV-019 Тест поля ввода "Пароль" и "Подтвердить пароль" формы «Регистрация»
-     валидными значениями(пароли совпадают)."""
+    """TV-019 Был проведен тест полей ввода "Пароль" и "Подтвердить пароль" формы "Регистрация" с использованием
+    допустимых валидных значений, включая совпадающие пароли."""
     page_reg = RegistrPage(selenium)
     page_reg.password_registration.send_keys(Settings.passw1)
     page_reg.password_registration.clear()
@@ -278,8 +282,8 @@ def test_registration_confirm_password_valid_data(selenium):
 
 
 def test_registration_confirm_password_invalid_data(selenium):
-    """TV-020 Тест поля ввода "Пароль" и "Подтвердить пароль" формы «Регистрация»
-    невалидными значениями(пароли не совпадают)."""
+    """TV-020 Был проведен тест полей ввода "Пароль" и "Подтвердить пароль" формы "Регистрация" с
+    использованием недопустимых невалидных значений, включая несовпадающие пароли."""
     page_reg = RegistrPage(selenium)
     page_reg.password_registration.send_keys(Settings.passw1)
     page_reg.password_registration.clear()

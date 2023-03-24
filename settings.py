@@ -2,25 +2,25 @@ class Settings:
     chrome_driver = "/tests/chromedriver.exe"
 
     base_url = 'https://b2c.passport.rt.ru'
-    valid_email = 'khmarav@yandex.ru'       # Ввести валидный email
-    valid_password = '@@********'   # Ввести валидный пароль
+    valid_email = 'dimakosmos1991@gmail.ru'       # Ввести валидный email
+    valid_password = 'bgF-5sc-7gg-L9s'   # Ввести валидный пароль
     valid_email_reg = 'Ввести валидный email'   # Ввести валидный email
-    invalid_email = 'inv.alid.com'
-    invalid_password = 'invalid123456'
+    invalid_email = 'in.com'
+    invalid_password = 'inid123456'
     empty_email = ''
     empty_password = ''
     menu_type_auth = ['Телефон', 'Почта', 'Логин', 'Лицевой счёт']
     placeholder_name = ['Мобильный телефон', 'Электронная почта', 'Логин', 'Лицевой счёт']
-    first_name = 'Петр'
-    last_name = 'Петрович'
+    first_name = 'Дмитрий'
+    last_name = 'Олегович'
     first_name_ = '-'
     last_name_ = '-'
-    russian_generate_string = 'ф'
+    russian_generate_string = 'ы'
     latin_generate_string = 'invalid'
-    chinese_chars = '形聲字象形字形声字/'
+    chinese_chars = '字形声字/'
     special_chars = '()_+=/{}!@#$%^&*'
-    numbers = 555
+    numbers = 123
     empty = ''
-    passw1 = 'QwE12345'
-    passw2 = 'Z56vBn09Dswa9874'
-    passw3 = 'W321Ujb30aSwsX1987654'
+    passw1 = 'abE123456789'
+    passw2 = 'zxzxzxvBn09Dswa9874'
+    passw3 = 'xadq23213424'
